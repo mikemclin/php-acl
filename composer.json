@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "MikeMcLin\\Acl\\": "app/"
+            "MikeMcLin\\Acl\\": "src/"
         }
     },
     "require": {
