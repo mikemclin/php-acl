@@ -1,0 +1,19 @@
+{
+    "name": "mikemclin/php-acl",
+    "description": "Role-based permissions for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike McLin",
+            "email": "mclinmike@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MikeMcLin\\Acl\\": "app/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
