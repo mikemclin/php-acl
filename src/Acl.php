@@ -10,15 +10,7 @@ class Acl implements AclContract, StorableContract
     use ForgetStorable;
 
     protected $roles = [];
-    protected $abilities;
-
-    public function __construct()
-    {
-        $this->abilities = (object)[];
-        $this->abilities->user = [
-            'view_users'
-        ];
-    }
+    protected $abilities = [];
 
     /**
      * Restore data from web storage.
@@ -79,7 +71,7 @@ class Acl implements AclContract, StorableContract
     }
 
     /**
-     * Set the abilities object (overwriting previous abilities)
+     * Set the abilities array (overwriting previous abilities)
      *
      * Each property on the abilities object should be a role.
      * Each role should have a value of an array. The array should contain
@@ -87,23 +79,23 @@ class Acl implements AclContract, StorableContract
      *
      * Example:
      *
-     *    (object) [
+     *    [
      *        guest => ['login'],
      *        user  => ['logout', 'view_content'],
      *        admin => ['logout', 'view_content', 'manage_users']
      *    ]
      *
-     * @param $abilities
+     * @param array $abilities
      */
     public function setAbilities($abilities)
     {
-        $this->abilities = $abilities;
+        $this->abilities = (array)$abilities;
     }
 
     /**
      * Get the abilities object
      *
-     * @return object
+     * @return array
      */
     public function getAbilities()
     {
@@ -118,10 +110,10 @@ class Acl implements AclContract, StorableContract
      */
     public function addAbility($role, $ability)
     {
-        if (!isset($this->abilities->{$role})) {
-            $this->abilities->{$role} = [];
+        if (!isset($this->abilities[$role])) {
+            $this->abilities[$role] = [];
         }
-        $this->abilities->{$role}[] = $ability;
+        $this->abilities[$role][] = $ability;
     }
 
     /**
@@ -134,7 +126,7 @@ class Acl implements AclContract, StorableContract
     public function can($ability)
     {
         foreach ($this->roles as $role) {
-            if (is_array($this->abilities->{$role}) && in_array($ability, $this->abilities->{$role})) {
+            if (is_array($this->abilities[$role]) && in_array($ability, $this->abilities[$role])) {
                 return true;
             }
         }
