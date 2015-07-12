@@ -134,7 +134,7 @@ class Acl implements AclContract, StorableContract
     public function can($ability)
     {
         foreach ($this->roles as $role) {
-            if (is_array($this->abilities->$role) && in_array($ability, $this->abilities->$role)) {
+            if (is_array($this->abilities->{$role}) && in_array($ability, $this->abilities->{$role})) {
                 return true;
             }
         }
