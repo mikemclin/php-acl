@@ -71,6 +71,16 @@ class Acl implements AclContract, StorableContract
     }
 
     /**
+     * Get the abilities object
+     *
+     * @return array
+     */
+    public function getAbilities()
+    {
+        return $this->abilities;
+    }
+
+    /**
      * Set the abilities array (overwriting previous abilities)
      *
      * Each property on the abilities object should be a role.
@@ -90,16 +100,6 @@ class Acl implements AclContract, StorableContract
     public function setAbilities($abilities)
     {
         $this->abilities = (array)$abilities;
-    }
-
-    /**
-     * Get the abilities object
-     *
-     * @return array
-     */
-    public function getAbilities()
-    {
-        return $this->abilities;
     }
 
     /**
@@ -143,7 +143,7 @@ class Acl implements AclContract, StorableContract
     {
         $this->persist([
             'roles'     => $this->roles,
-            'abilities' => $this->abilities
+            'abilities' => $this->abilities,
         ]);
     }
 }
