@@ -127,6 +127,7 @@ class Acl implements AclContract, StorableContract
     {
         foreach ($this->roles as $role) {
             if (
+                isset($this->abilities[$role]) &&
                 is_array($this->abilities[$role]) &&
                 in_array($ability, $this->abilities[$role])
             ) {
